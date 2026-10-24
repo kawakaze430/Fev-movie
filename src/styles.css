@@ -2,3 +2,6 @@
 
 /* Keep secondary information readable without losing the editorial hierarchy. */
 @media(min-width:691px){.card-meta{font-size:8px}.card-title{font-size:13px}.card-description{font-size:9px}.search-field input{font-size:11px}.filter-row select{font-size:10px}.filter-label,.sort-control{font-size:10px}.card-quality{font-size:8px}}
+
+/* Longer ClipNest wordmark stays usable at narrow viewport widths. */
+@media(max-width:600px){.header-inner .wordmark{font-size:clamp(16px,4.5vw,22px);letter-spacing:-1px}.footer-logo{font-size:23px}}
