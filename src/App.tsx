@@ -1,6 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
 import type { ReactNode } from 'react';
 import { assetUrl, parseCatalog } from './catalog';
+import { recommendLocal } from './recommend';
 import type { Catalog, Movie } from './catalog';
 
 type IconName = 'search' | 'arrow' | 'bookmark' | 'close' | 'external' | 'filter' | 'check' | 'film';
@@ -76,6 +77,7 @@ export default function App() {
   const [saved, setSaved] = useState<string[]>(readSaved);
   const [saveNotice, setSaveNotice] = useState('');
   const [selected, setSelected] = useState<Movie | null>(null);
+  const [remoteIds, setRemoteIds] = useState<string[] | null>(null);
   const [limit, setLimit] = useState(12);
   const collection = useRef<HTMLElement>(null);
   const about = useRef<HTMLElement>(null);
@@ -93,6 +95,31 @@ export default function App() {
     catch { setSaveNotice('Saved for this session. Browser storage is unavailable.'); }
   };
   const movies = catalog?.movies || [];
+  useEffect(() => {
+    const base = import.meta.env.VITE_RECOMMENDATIONS_API_URL?.trim();
+    if (!base || !catalog) { setRemoteIds(null); return; }
+    const controller = new AbortController();
+    try {
+      const url = new URL(base.replace(/\/+$/, '') + '/recommendations');
+      url.searchParams.set('seed', saved.slice(0, 50).join(','));
+      url.searchParams.set('limit', '6');
+      fetch(url, { signal: controller.signal }).then(response => {
+        if (!response.ok) throw new Error('Recommendations unavailable');
+        return response.json();
+      }).then(data => {
+        if (!controller.signal.aborted && Array.isArray(data.recommendations)) {
+          setRemoteIds(data.recommendations.map((entry: { id?: unknown }) => entry.id).filter((id: unknown): id is string => typeof id === 'string'));
+        }
+      }).catch(() => { if (!controller.signal.aborted) setRemoteIds(null); });
+    } catch { setRemoteIds(null); }
+    return () => controller.abort();
+  }, [catalog, saved]);
+  const recommendedMovies = useMemo(() => {
+    const seen = new Set(saved);
+    return [...(remoteIds || []).map(id => movies.find(movie => movie.id === id)), ...recommendLocal(movies, saved, 6)]
+      .filter((movie): movie is Movie => !!movie)
+      .filter(movie => { if (seen.has(movie.id)) return false; seen.add(movie.id); return true; }).slice(0, 6);
+  }, [movies, saved, remoteIds]);
   const genres = Array.from(new Set(movies.flatMap(movie => movie.genres))).sort();
   const years = Array.from(new Set(movies.map(movie => movie.year).filter((value): value is number => value !== null))).sort((a, b) => b - a);
   const qualities = Array.from(new Set(movies.flatMap(movie => movie.links.map(link => link.quality).filter((value): value is string => !!value)))).sort();
@@ -127,6 +154,10 @@ export default function App() {
         <div className="movie-grid">{filtered.slice(0, limit).map((movie, index) => <article className="movie-card" key={movie.id}><div className="poster-wrap"><button className="poster-button" onClick={() => setSelected(movie)} aria-label={`View ${movie.title}`}><Poster movie={movie} /><span className="poster-scrim" /><span className="view-film">View film <Icon name="arrow" size={17} /></span></button><span className="poster-index">{String(index + 1).padStart(2, '0')}</span><button className={`bookmark-button ${saved.includes(movie.id) ? 'saved' : ''}`} onClick={() => toggleSave(movie)} aria-label={`${saved.includes(movie.id) ? 'Remove' : 'Save'} ${movie.title}`} aria-pressed={saved.includes(movie.id)}><Icon name={saved.includes(movie.id) ? 'check' : 'bookmark'} size={16} /></button>{movie.links.some(link => link.quality) && <span className="card-quality">{movie.links.find(link => link.quality)?.quality}</span>}</div><div className="card-meta"><span>{movie.year ?? 'YEAR TBC'}</span><span>{movie.genres[0] || 'UNCATEGORIZED'}</span></div><button className="card-title" onClick={() => setSelected(movie)}>{movie.title}</button><p className="card-description">{movie.genres.slice(1).join(' · ') || 'A story worth discovering'}</p></article>)}</div>
         {catalog && filtered.length > 0 && <div className="collection-bottom"><span>Showing {Math.min(limit, filtered.length)} of {filtered.length} films</span>{filtered.length > limit ? <button className="outline-button" onClick={() => setLimit(value => value + 12)}>More stories await <Icon name="arrow" size={17} /></button> : <span className="end-note">GOOD STORIES NEVER REALLY END <span>✳</span></span>}</div>}
       </section>
+      {catalog && tab === 'discover' && recommendedMovies.length > 0 && <section className="collection section-width" aria-labelledby="recommendations-title">
+        <div className="section-heading"><div><p className="eyebrow light-eyebrow">A LITTLE INSPIRATION</p><h2 id="recommendations-title">{saved.length ? 'Inspired by your' : 'More to'} <em>{saved.length ? 'watchlist.' : 'explore.'}</em></h2></div><p className="section-description">Suggestions based on movie genres, titles and release years — no tracking.</p></div>
+        <div className="movie-grid">{recommendedMovies.map(movie => <article key={movie.id} className="movie-card"><div className="poster-wrap"><button className="poster-button" onClick={() => setSelected(movie)} aria-label={`View ${movie.title}`}><Poster movie={movie} /><span className="poster-scrim" /><span className="view-film">View film <Icon name="arrow" size={17} /></span></button></div><div className="card-meta"><span>{movie.year ?? 'YEAR TBC'}</span><span>{movie.genres[0] || 'UNCATEGORIZED'}</span></div><button className="card-title" onClick={() => setSelected(movie)}>{movie.title}</button></article>)}</div>
+      </section>}
       <section className="about-band" ref={about} id="our-story"><div className="section-width about-inner"><span className="about-asterisk">✳</span><div><p className="eyebrow">LESS SCROLLING. MORE DISCOVERING.</p><h2>For the love<br />of the <em>story.</em></h2></div><div className="about-copy"><p>Great films take us somewhere. FRAME brings them together — a thoughtful collection to explore, save, and return to.</p><p className="about-small">{catalog?.kind === 'public' ? 'Only reviewed records and permitted artwork belong in this collection. External links open on their original provider.' : 'You’re exploring an original demo. Every film and poster here was created for this site. Imported channel archives stay private until their distribution and artwork rights are reviewed.'}</p><button onClick={() => goCollection()} className="text-link">Find a story <Icon name="arrow" size={18} /></button></div></div></section>
     </main>
     <footer className="site-footer section-width"><a href="#" className="wordmark footer-logo">FRAME<span className="logo-dot">®</span></a><span>A world of stories. A little closer.</span><span className="footer-status"><span />{catalog?.kind === 'public' ? 'REVIEWED COLLECTION' : 'ORIGINAL DEMO COLLECTION'}</span><a href="#collection" className="back-top">Back to films ↑</a></footer>
