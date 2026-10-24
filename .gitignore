@@ -27,3 +27,7 @@ reports/private/
 *.log
 *.tsbuildinfo
 .DS_Store
+
+# Approved catalog staged for Lambda; never add to Git
+backend/data/
+.aws-sam/
