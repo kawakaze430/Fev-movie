@@ -37,7 +37,7 @@ jobs:
       - name: Package source without Telegram history
         if: always()
         run: |
-          zip -q -r /tmp/clipnest-source.zip src backend importer scripts tests public/data public/posters public/art .github/workflows package.json package-lock.json index.html vite.config.ts tsconfig.json playwright.config.ts amplify.yml customHttp.yml requirements.txt README.md AGENTS.md CODEX_NEXT_PROMPT.md -x '*.pyc' '*__pycache__*'
+          zip -q -r /tmp/clipnest-source.zip src backend importer scripts tests infra docs delivery public/data public/posters public/art .github/workflows .gitignore package.json package-lock.json index.html vite.config.ts tsconfig.json playwright.config.ts amplify.yml customHttp.yml requirements.txt README.md AGENTS.md CODEX_NEXT_PROMPT.md -x '*.pyc' '*__pycache__*'
       - uses: actions/upload-artifact@v4
         if: always()
         with:

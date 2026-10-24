@@ -1,32 +1,36 @@
-# ENGINEERING H03 — ClipNest direct-main migration
+# ENGINEERING H03 — ClipNest verified migration and next blockers
 
-Canonical repository: https://github.com/kawakaze430/Fev-movie
-Target: main (no PR or new branch)
+Repository: https://github.com/kawakaze430/Fev-movie
+Target branch: main; committed directly without PRs or branches.
 
-## Current state
-IMPLEMENTED / NOT FULLY TESTED
-- React movie-catalog app and fictional demonstration dataset.
-- Multi-channel Telegram HTML importer and public-data gate.
-- Browser-local watchlist and metadata recommendation shelf.
-- Separate Python recommendation API and unit tests.
-- GitHub Actions CI, source artifact ZIP packaging, Amplify frontend build config.
+## VERIFIED — GitHub Actions
+Successful run: https://github.com/kawakaze430/Fev-movie/actions/runs/40070123843
+Commit tested: 859635044a89fca2631fa03473d57029367cf8e5
+- Python importer and recommendation tests: 50 PASS
+- npm ci and TypeScript/Vite production build: PASS
+- Public catalog validation and built artifact audit: PASS
+- Playwright Chromium interaction/smoke checks: 19 PASS
+- Source-only ZIP artifact: PASS, available in workflow artifacts
 
-BLOCKED / EXTERNAL
-- Legal rights review for actual full-length movie links and poster reproduction.
-- Real import of checked-in Telegram root export into approved private storage.
-- Public repository includes raw exported media: must be made private; history remediation must be decided.
-- AWS Amplify connection, Lambda deployment and live HTTPS/domain verification require AWS account authorization.
+Follow-up commit c71c3242a5c549851492f836e42b9f3c4f2945d4 also has a successful GitHub Actions run. See Actions for the newest commit evidence after further changes.
 
-NOT YET VERIFIED IN THIS SESSION
-- npm ci / TypeScript production build on Fev-movie.
-- All Python tests and Playwright suite after migration.
-- Real 3,000+ record count, link correctness and poster-to-message joins.
-- Lambda on AWS and live website URL.
+## IMPLEMENTED
+- React catalog, detailed movie cards, poster presentation, search/filter/watchlist and quality-link UI.
+- Multi-channel Telegram HTML ZIP importer with provenance, deduplication and private-by-default outputs.
+- Local and API-backed metadata recommendation engine; Python Lambda handler.
+- SAM deployment template, import helper for checked-out raw export, AWS Amplify build configuration.
+- GitHub Actions builds and download-safe source-only ZIP without root raw exports.
 
-## Important
-Do not confuse this repository with kawakaze430/telegram_to_web: it supplied the previously tested starter code. The real Telegram export is in Fev-movie. The original 32 MiB attachment limit is irrelevant to files that Codex checks out via GitHub.
+## PARTIAL / NOT TESTED
+- Actual root Telegram export has not yet been imported into an authorized private data store and counted.
+- Lambda/SAM deployment to AWS is prepared, but has not been run against a live AWS account.
+- Full-stack persistent features such as user login, admin moderation dashboard, database-backed lists are not implemented.
+- No production data, authorized posters, or live HTTPS domain have been verified.
 
-The public site intentionally remains a demo until a rights-cleared publication pass succeeds.
+## BLOCKED — EXTERNAL
+- Distribution and poster rights review for all real movie records and links.
+- Privacy: this repository was public when root Telegram export files were committed; change visibility and review history remediation.
+- AWS account connection, IAM deployment approval, domain configuration and billing alerts.
 
-## Minimum next Codex Cloud job
-Read CODEX_NEXT_PROMPT.md. Run only missing tests and the private import inventory. CI is responsible for routine builds and the source-only ZIP. Report counts and stop, rather than adding new features.
+## CODEX CLOUD MINIMAL TASK
+With limited model-time, execute ONLY a private real-export import/inventory and unblock any subsequent CI failures. Do not repeat 50 passed unit tests or 19 passed browser checks unless the newest Actions run fails. Follow CODEX_NEXT_PROMPT.md. Never publish actual external links without rights review.
