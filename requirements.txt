@@ -1,0 +1,2 @@
+# Needed only when publishing explicitly licensed imported raster posters.
+Pillow==12.3.0
