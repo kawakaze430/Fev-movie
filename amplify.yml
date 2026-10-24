@@ -1,0 +1,26 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - nvm install 24
+        - nvm use 24
+        - npm ci
+        - pyenv install -s 3.12.14
+        - pyenv global 3.12.14
+        - python -m venv /tmp/frame-build-venv
+        - /tmp/frame-build-venv/bin/python -m pip install --requirement requirements.txt
+        - /tmp/frame-build-venv/bin/python -m unittest discover -s tests/python -v
+        - /tmp/frame-build-venv/bin/python -m unittest discover -s scripts -p 'test_*.py' -v
+        - /tmp/frame-build-venv/bin/python scripts/validate_public.py
+    build:
+      commands:
+        - npm run build
+        - /tmp/frame-build-venv/bin/python scripts/validate_public.py --site dist --built
+  artifacts:
+    baseDirectory: dist
+    files:
+      - '**/*'
+  cache:
+    paths:
+      - ~/.npm/**/*

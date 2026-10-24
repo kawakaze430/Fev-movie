@@ -1,0 +1,508 @@
+{
+  "schemaVersion": 1,
+  "generatedAt": "2026-10-23T00:00:00Z",
+  "kind": "demo",
+  "movies": [
+    {
+      "id": "quiet-atlas",
+      "title": "The Quiet Atlas",
+      "year": 2025,
+      "genres": [
+        "Adventure",
+        "Drama"
+      ],
+      "synopsis": "An archivist follows a hand-drawn map across a disappearing coastline, finding a different version of home in every small town.",
+      "poster": "/posters/quiet-atlas.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "4K",
+          "url": "https://example.org/films/quiet-atlas/4K",
+          "size": "4.8 GB"
+        },
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/quiet-atlas/1080p",
+          "size": "2.1 GB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "sunday-collection",
+          "channelName": "The Sunday Collection",
+          "messageId": "101"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "still-the-sea",
+      "title": "Still, the Sea",
+      "year": 2024,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "synopsis": "On an island where the ferry stops for winter, two strangers rebuild a weather station and learn the language of staying.",
+      "poster": "/posters/still-the-sea.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/still-the-sea/1080p",
+          "size": "2.1 GB"
+        },
+        {
+          "label": "Demo destination",
+          "quality": "720p",
+          "url": "https://example.org/films/still-the-sea/720p",
+          "size": "980 MB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "world-cinema",
+          "channelName": "World Cinema",
+          "messageId": "202"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "last-train",
+      "title": "After the Last Train",
+      "year": 2025,
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "synopsis": "A night porter finds a suitcase of unsent letters. Before the first train arrives, every letter leads back to the same empty platform.",
+      "poster": "/posters/last-train.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/last-train/1080p",
+          "size": "2.1 GB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "sunday-collection",
+          "channelName": "The Sunday Collection",
+          "messageId": "103"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "place-between",
+      "title": "A Place Between",
+      "year": 2023,
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "synopsis": "A musician and an urban gardener share an apartment for one summer, never meeting until the final day of their unlikely arrangement.",
+      "poster": "/posters/place-between.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "720p",
+          "url": "https://example.org/films/place-between/720p",
+          "size": "980 MB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "world-cinema",
+          "channelName": "World Cinema",
+          "messageId": "204"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "days-of-amber",
+      "title": "Days of Amber",
+      "year": 2024,
+      "genres": [
+        "Drama",
+        "Adventure"
+      ],
+      "synopsis": "Three siblings return to their childhood orchard for one final harvest and discover that remembering is its own kind of journey.",
+      "poster": "/posters/days-of-amber.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "4K",
+          "url": "https://example.org/films/days-of-amber/4K",
+          "size": "4.8 GB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "sunday-collection",
+          "channelName": "The Sunday Collection",
+          "messageId": "105"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "blue-hour",
+      "title": "The Blue Hour",
+      "year": 2025,
+      "genres": [
+        "Sci-Fi",
+        "Mystery"
+      ],
+      "synopsis": "For seven minutes every evening, a coastal town receives radio broadcasts from a future it has not yet decided to believe in.",
+      "poster": "/posters/blue-hour.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": null,
+          "url": "https://example.org/films/blue-hour/unspecified",
+          "size": null
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "world-cinema",
+          "channelName": "World Cinema",
+          "messageId": "206"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "wild-paper",
+      "title": "Wild Paper",
+      "year": 2022,
+      "genres": [
+        "Documentary",
+        "Adventure"
+      ],
+      "synopsis": "An imagined expedition follows a paper artist through forests, deserts and cities as she builds an atlas made entirely of folded landscapes.",
+      "poster": "/posters/wild-paper.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "4K",
+          "url": "https://example.org/films/wild-paper/4K",
+          "size": "4.8 GB"
+        },
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/wild-paper/1080p",
+          "size": "2.1 GB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "sunday-collection",
+          "channelName": "The Sunday Collection",
+          "messageId": "107"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "borrowed-sun",
+      "title": "A Borrowed Sun",
+      "year": 2024,
+      "genres": [
+        "Sci-Fi",
+        "Drama"
+      ],
+      "synopsis": "A solar engineer on a distant research station begins receiving voice notes from the house she left behind thirty years earlier.",
+      "poster": "/posters/borrowed-sun.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/borrowed-sun/1080p",
+          "size": "2.1 GB"
+        },
+        {
+          "label": "Demo destination",
+          "quality": "720p",
+          "url": "https://example.org/films/borrowed-sun/720p",
+          "size": "980 MB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "world-cinema",
+          "channelName": "World Cinema",
+          "messageId": "208"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "every-small-light",
+      "title": "Every Small Light",
+      "year": 2023,
+      "genres": [
+        "Animation",
+        "Adventure"
+      ],
+      "synopsis": "A lighthouse apprentice and a migrating firefly set off through a city without electricity to bring the evening back to life.",
+      "poster": "/posters/every-small-light.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/every-small-light/1080p",
+          "size": "2.1 GB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "sunday-collection",
+          "channelName": "The Sunday Collection",
+          "messageId": "109"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "north-of-here",
+      "title": "North of Here",
+      "year": 2025,
+      "genres": [
+        "Adventure",
+        "Drama"
+      ],
+      "synopsis": "A retired cartographer and her grandson take the long road north, guided by a notebook with one page missing.",
+      "poster": "/posters/north-of-here.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "720p",
+          "url": "https://example.org/films/north-of-here/720p",
+          "size": "980 MB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "world-cinema",
+          "channelName": "World Cinema",
+          "messageId": "210"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "velvet-sunday",
+      "title": "Velvet Sunday",
+      "year": 2021,
+      "genres": [
+        "Romance",
+        "Drama"
+      ],
+      "synopsis": "Two caf\u00e9 owners on opposite sides of a quiet square exchange recipes, records and increasingly elaborate reasons not to say hello.",
+      "poster": "/posters/velvet-sunday.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "4K",
+          "url": "https://example.org/films/velvet-sunday/4K",
+          "size": "4.8 GB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "sunday-collection",
+          "channelName": "The Sunday Collection",
+          "messageId": "111"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "in-the-orbit",
+      "title": "In the Orbit of You",
+      "year": 2024,
+      "genres": [
+        "Sci-Fi",
+        "Romance"
+      ],
+      "synopsis": "Two observatory caretakers calculate the return of a long-lost comet while the distance between their own lives slowly closes.",
+      "poster": "/posters/in-the-orbit.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": null,
+          "url": "https://example.org/films/in-the-orbit/unspecified",
+          "size": null
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "world-cinema",
+          "channelName": "World Cinema",
+          "messageId": "212"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "empty-garden",
+      "title": "The Empty Garden",
+      "year": 2022,
+      "genres": [
+        "Mystery",
+        "Drama"
+      ],
+      "synopsis": "A landscape architect inherits a garden that changes overnight. Each morning, a new path reveals another story about its former keeper.",
+      "poster": "/posters/empty-garden.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "4K",
+          "url": "https://example.org/films/empty-garden/4K",
+          "size": "4.8 GB"
+        },
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/empty-garden/1080p",
+          "size": "2.1 GB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "sunday-collection",
+          "channelName": "The Sunday Collection",
+          "messageId": "113"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "slow-river",
+      "title": "Where the River Slows",
+      "year": 2023,
+      "genres": [
+        "Documentary",
+        "Drama"
+      ],
+      "synopsis": "A fictional portrait of a riverside community told through its boats, kitchens and the patient rhythms of a changing season.",
+      "poster": "/posters/slow-river.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/slow-river/1080p",
+          "size": "2.1 GB"
+        },
+        {
+          "label": "Demo destination",
+          "quality": "720p",
+          "url": "https://example.org/films/slow-river/720p",
+          "size": "980 MB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "world-cinema",
+          "channelName": "World Cinema",
+          "messageId": "214"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    },
+    {
+      "id": "tomorrow-postcards",
+      "title": "Postcards from Tomorrow",
+      "year": null,
+      "genres": [
+        "Animation",
+        "Sci-Fi"
+      ],
+      "synopsis": "A young postal worker discovers a route that delivers letters one day early and must choose which tiny futures are hers to change.",
+      "poster": "/posters/tomorrow-postcards.svg",
+      "links": [
+        {
+          "label": "Demo destination",
+          "quality": "1080p",
+          "url": "https://example.org/films/tomorrow-postcards/1080p",
+          "size": "2.1 GB"
+        }
+      ],
+      "sources": [
+        {
+          "channelId": "sunday-collection",
+          "channelName": "The Sunday Collection",
+          "messageId": "115"
+        }
+      ],
+      "rights": {
+        "distribution": "cleared",
+        "poster": "original",
+        "evidence": "Original fictional demo record and artwork created for FRAME; no imported media."
+      }
+    }
+  ]
+}
