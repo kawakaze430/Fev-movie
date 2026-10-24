@@ -1,0 +1,46 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: AWS::Serverless-2016-10-31
+Description: ClipNest stateless recommendation API, approved catalog only
+Parameters:
+  AllowedOrigin:
+    Type: String
+    Default: '*'
+    Description: Exact HTTPS frontend origin for CORS
+Resources:
+  RecommendationApi:
+    Type: AWS::Serverless::HttpApi
+    Properties:
+      CorsConfiguration:
+        AllowOrigins:
+          - !Ref AllowedOrigin
+        AllowMethods: [GET, OPTIONS]
+        AllowHeaders: [Content-Type]
+  RecommendationFunction:
+    Type: AWS::Serverless::Function
+    Properties:
+      Runtime: python3.12
+      Architectures: [arm64]
+      Handler: lambda_handler.handler
+      CodeUri: ../backend/
+      Timeout: 5
+      MemorySize: 128
+      Environment:
+        Variables:
+          CLIPNEST_ALLOWED_ORIGIN: !Ref AllowedOrigin
+      Events:
+        Recommendations:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref RecommendationApi
+            Path: /recommendations
+            Method: GET
+        Health:
+          Type: HttpApi
+          Properties:
+            ApiId: !Ref RecommendationApi
+            Path: /health
+            Method: GET
+Outputs:
+  APIBaseUrl:
+    Description: Use as VITE_RECOMMENDATIONS_API_URL
+    Value: !Join ['', ['https://', !Ref RecommendationApi, '.execute-api.', !Ref 'AWS::Region', '.amazonaws.com']]
