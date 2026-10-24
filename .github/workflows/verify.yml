@@ -1,0 +1,46 @@
+name: ClipNest verified build
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+      - name: Install dependencies
+        run: |
+          npm ci
+          python -m pip install -r requirements.txt
+      - name: Python importer and recommendation tests
+        run: python -m unittest discover -s tests/python -p "test_*.py" -v
+      - name: Validate public catalog
+        run: python scripts/validate_public.py
+      - name: Typecheck and compile frontend
+        run: npm run build
+      - name: Audit site build
+        run: python scripts/validate_public.py --site dist --built
+      - name: Install browser
+        run: npx playwright install --with-deps chromium
+      - name: Browser smoke
+        run: CHROMIUM_PATH=$(node -e "process.stdout.write(require('playwright').chromium.executablePath())") npm run test:e2e -- --grep-invert 'screenshot comparison'
+      - name: Package source without Telegram history
+        if: always()
+        run: |
+          zip -q -r /tmp/clipnest-source.zip src backend importer scripts tests public/data public/posters public/art .github/workflows package.json package-lock.json index.html vite.config.ts tsconfig.json playwright.config.ts amplify.yml customHttp.yml requirements.txt README.md AGENTS.md CODEX_NEXT_PROMPT.md -x '*.pyc' '*__pycache__*'
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clipnest-source
+          path: /tmp/clipnest-source.zip
+          retention-days: 14
