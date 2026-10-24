@@ -10,7 +10,7 @@ STOP = frozenset(("the", "and", "for", "from", "that", "with", "into", "your", "
 
 
 def _tokens(movie: Mapping[str, Any]) -> set[str]:
-    return {w for w in WORDS.findall(str(movie.get("title", "")) + " " + str(movie.get("synopsis", ""))) if w not in STOP}
+    return {w.casefold() for w in WORDS.findall(str(movie.get("title", "")) + " " + str(movie.get("synopsis", ""))) if w.casefold() not in STOP}
 
 
 def _genres(movie: Mapping[str, Any]) -> set[str]:
@@ -51,8 +51,8 @@ def recommend(movies: Sequence[Mapping[str, Any]], saved_ids: Sequence[str] = ()
     pool = ranked[:max(50, limit * 8)]
     while pool and len(output) < limit:
         best = max(range(len(pool)), key=lambda i: (pool[i][0] - sum(genre_usage[g] for g in _genres(pool[i][3])) * 0.45, -i))
-        _, _, movie_id, movie, reason = pool.pop(best)
+        score, _, movie_id, movie, reason = pool.pop(best)
         for genre in _genres(movie):
             genre_usage[genre] += 1
-        output.append({"id": movie_id, "reason": reason, "score": round(float(_), 3)})
+        output.append({"id": movie_id, "reason": reason, "score": round(float(score), 3)})
     return output
